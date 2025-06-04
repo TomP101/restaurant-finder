@@ -1,0 +1,6 @@
+# created by virtualenv automatically
+.venv/Lib
+*.env
+frontend/node_modules/
+frontend/.next/
+
