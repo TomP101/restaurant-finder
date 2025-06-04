@@ -29,7 +29,7 @@ export default function App() {
   try {
 
     const res = await fetch(
-      `${API_BASE}/api/places/details/?place_id=${restaurant.id}`
+      `${API_BASE}/places/details/?place_id=${restaurant.id}`
 
     )
     const data = await res.json()
@@ -48,9 +48,9 @@ export default function App() {
     author: r.authorAttribution?.displayName || "Anonim",
     rating: r.rating || 0,
     text: r.text?.text || r.originalText?.text || "",
-    date: r.relativePublishTimeDescription || "Brak daty", // Google nie zawsze zwraca dokładną datę
+    date: r.relativePublishTimeDescription || "Brak daty",
   }))
-    const dbRes = await fetch(`${API_BASE}/api/reviews/place/?place_id=${restaurant.id}`)
+    const dbRes = await fetch(`${API_BASE}/reviews/place/?place_id=${restaurant.id}`)
     const dbReviews = await dbRes.json()
 
     const allReviews = [...googleReviews, ...dbReviews.map((r, i) => ({
@@ -102,7 +102,7 @@ export default function App() {
 
   const fetchCurrentUser = async () => {
   try {
-    const res = await fetch('${API_BASE}/api/whoami/', {
+    const res = await fetch('${API_BASE}/whoami/', {
       credentials: "include",
     })
     if (res.ok) {
@@ -118,7 +118,7 @@ export default function App() {
 
   const handleLogout = async () => {
   try {
-    await fetch('${API_BASE}/api/logout/', {
+    await fetch('${API_BASE}/logout/', {
       method: "GET",
       credentials: "include",
     })

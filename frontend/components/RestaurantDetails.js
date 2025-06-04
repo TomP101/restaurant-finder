@@ -10,7 +10,7 @@ export default function RestaurantDetails({ restaurant, onBack, onAddReview, set
 
   const handleReviewSubmitSuccess = async () => {
   try {
-    const res = await fetch(`${API_BASE}/api/reviews/place/?place_id=${restaurant.id}`, {
+    const res = await fetch(`${API_BASE}/reviews/place/?place_id=${restaurant.id}`, {
       credentials: "include"
     })
     if (!res.ok) return

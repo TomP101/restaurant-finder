@@ -14,7 +14,7 @@ export default function LoginForm({ onLoginSuccess }) {
     setError("")
 
     try {
-      const res = await fetch('${API_BASE}/api/login/', {
+      const res = await fetch('${API_BASE}/login/', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
