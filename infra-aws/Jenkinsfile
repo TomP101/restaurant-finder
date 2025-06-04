@@ -13,7 +13,7 @@ pipeline {
     stage('Init & Validate') {
       steps {
         dir('infra-aws') {
-          sh 'terraform init'
+          sh 'terraform init -upgrade'
           sh 'terraform validate'
         }
       }
