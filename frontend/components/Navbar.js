@@ -8,7 +8,7 @@ export default function Navbar({ onHomeClick, onLoginClick, onRegisterClick, onL
 
   const handleLogoutClick = async () => {
     try {
-      await fetch('${API_BASE}/logout/', {
+      await fetch(`${API_BASE}/logout/`, {
         method: "GET",
         credentials: "include",
       })

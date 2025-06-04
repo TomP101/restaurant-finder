@@ -102,7 +102,7 @@ export default function App() {
 
   const fetchCurrentUser = async () => {
   try {
-    const res = await fetch('${API_BASE}/whoami/', {
+    const res = await fetch(`${API_BASE}/whoami/`, {
       credentials: "include",
     })
     if (res.ok) {
@@ -118,7 +118,7 @@ export default function App() {
 
   const handleLogout = async () => {
   try {
-    await fetch('${API_BASE}/logout/', {
+    await fetch(`${API_BASE}/logout/`, {
       method: "GET",
       credentials: "include",
     })

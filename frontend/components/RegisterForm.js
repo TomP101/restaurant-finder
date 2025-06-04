@@ -13,7 +13,7 @@ export default function RegisterForm({ onRegisterSuccess }) {
     e.preventDefault()
     setError(null)
     try {
-      const res = await fetch('${API_BASE}/register/', {
+      const res = await fetch(`${API_BASE}/register/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })

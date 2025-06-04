@@ -33,7 +33,7 @@ export default function ReviewForm({ placeId,restaurant_name, onReviewSubmitSucc
     const csrftoken = getCookie("csrftoken")
 
     try {
-      const res = await fetch('${API_BASE}/reviews/add/', {
+      const res = await fetch(`${API_BASE}/reviews/add/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" ,
         "X-CSRFToken": csrftoken},

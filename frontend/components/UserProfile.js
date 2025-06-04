@@ -9,7 +9,7 @@ export default function UserProfile({ onBack }) {
   useEffect(() => {
     const fetchUserReviews = async () => {
       try {
-        const res = await fetch('${API_BASE}/user/reviews/', {
+        const res = await fetch(`${API_BASE}/user/reviews/`, {
           credentials: "include"
         })
         if (res.ok) {
