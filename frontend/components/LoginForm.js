@@ -1,6 +1,8 @@
 "use client"
 import { useState } from "react"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
 export default function LoginForm({ onLoginSuccess }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -12,7 +14,7 @@ export default function LoginForm({ onLoginSuccess }) {
     setError("")
 
     try {
-      const res = await fetch("http://localhost:8000/api/login/", {
+      const res = await fetch('${API_BASE}/api/login/', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

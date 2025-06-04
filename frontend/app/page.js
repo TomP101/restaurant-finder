@@ -10,6 +10,9 @@ import "../styles/globals.css"
 import "../styles/components.css"
 import UserProfile from "../components/UserProfile";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
+
 
 export default function App() {
   const [currentView, setCurrentView] = useState("home")
@@ -26,7 +29,7 @@ export default function App() {
   try {
 
     const res = await fetch(
-      `http://localhost:8000/api/places/details/?place_id=${restaurant.id}`
+      `${API_BASE}/api/places/details/?place_id=${restaurant.id}`
 
     )
     const data = await res.json()
@@ -47,7 +50,7 @@ export default function App() {
     text: r.text?.text || r.originalText?.text || "",
     date: r.relativePublishTimeDescription || "Brak daty", // Google nie zawsze zwraca dokładną datę
   }))
-    const dbRes = await fetch(`http://localhost:8000/api/reviews/place/?place_id=${restaurant.id}`)
+    const dbRes = await fetch(`${API_BASE}/api/reviews/place/?place_id=${restaurant.id}`)
     const dbReviews = await dbRes.json()
 
     const allReviews = [...googleReviews, ...dbReviews.map((r, i) => ({
@@ -99,7 +102,7 @@ export default function App() {
 
   const fetchCurrentUser = async () => {
   try {
-    const res = await fetch("http://localhost:8000/api/whoami/", {
+    const res = await fetch('${API_BASE}/api/whoami/', {
       credentials: "include",
     })
     if (res.ok) {
@@ -115,7 +118,7 @@ export default function App() {
 
   const handleLogout = async () => {
   try {
-    await fetch("http://localhost:8000/api/logout/", {
+    await fetch('${API_BASE}/api/logout/', {
       method: "GET",
       credentials: "include",
     })

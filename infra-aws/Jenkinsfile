@@ -19,19 +19,23 @@ pipeline {
       }
     }
 
-    stage('Plan') {
+     stage('Plan') {
       steps {
-        dir('infra-aws') {
-          sh 'terraform plan -out=tfplan'
+        withCredentials([string(credentialsId: 'google-api-key', variable: 'GOOGLE_API_KEY')]) {
+          dir('infra-aws') {
+            sh 'terraform plan -var="google_api_key=${GOOGLE_API_KEY}" -out=tfplan'
+          }
+          archiveArtifacts artifacts: 'infra-aws/tfplan'
         }
-        archiveArtifacts artifacts: 'infra-aws/tfplan'
       }
     }
 
     stage('Apply') {
       steps {
-        dir('infra-aws') {
-          sh 'terraform apply -auto-approve tfplan'
+        withCredentials([string(credentialsId: 'google-api-key', variable: 'GOOGLE_API_KEY')]) {
+          dir('infra-aws') {
+            sh 'terraform apply -auto-approve -var="google_api_key=${GOOGLE_API_KEY}" tfplan'
+          }
         }
       }
     }
@@ -39,8 +43,10 @@ pipeline {
     stage('Destroy') {
       when { expression { params.DESTROY } }
       steps {
-        dir('infra-aws') {
-          sh 'terraform destroy -auto-approve'
+        withCredentials([string(credentialsId: 'google-api-key', variable: 'GOOGLE_API_KEY')]) {
+          dir('infra-aws') {
+            sh 'terraform destroy -auto-approve -var="google_api_key=${GOOGLE_API_KEY}"'
+          }
         }
       }
     }

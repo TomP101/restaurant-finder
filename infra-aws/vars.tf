@@ -40,3 +40,12 @@ variable "image_tag" {
   default     = "a12312"
 }
 
+variable "api_url" {
+  description = "DNS name Application Load Balancer (bez protokołu)"
+  type        = string
+}
+variable "google_api_key" {
+  description = "Klucz API Google"
+  type        = string
+  sensitive   = true
+}

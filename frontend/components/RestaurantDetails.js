@@ -3,12 +3,14 @@
 import ReviewList from "./ReviewList"
 import ReviewForm from "./ReviewForm"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
 export default function RestaurantDetails({ restaurant, onBack, onAddReview, setSelectedRestaurant }) {
   if (!restaurant) return null
 
   const handleReviewSubmitSuccess = async () => {
   try {
-    const res = await fetch(`http://localhost:8000/api/reviews/place/?place_id=${restaurant.id}`, {
+    const res = await fetch(`${API_BASE}/api/reviews/place/?place_id=${restaurant.id}`, {
       credentials: "include"
     })
     if (!res.ok) return
@@ -18,7 +20,7 @@ export default function RestaurantDetails({ restaurant, onBack, onAddReview, set
     ...prev,
     reviews: [
       ...newReviews,
-      ...prev.reviews.filter(r => String(r.id).startsWith("g-"))  // tylko Google opinie
+      ...prev.reviews.filter(r => String(r.id).startsWith("g-"))
     ]
   }))
   } catch (err) {

@@ -31,6 +31,8 @@ module "compute" {
   repo_frontend   = "frontend-repo"
   image_tag       = var.image_tag
 
+  api_url = module.network.alb_dns_name
 
+  google_api_key        = var.google_api_key
 
 }

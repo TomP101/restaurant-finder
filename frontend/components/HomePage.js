@@ -3,6 +3,9 @@
 import { useState } from "react"
 import RestaurantCard from "./RestaurantCard"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
+
 export default function HomePage({ onRestaurantSelect }) {
   const [searchTerm, setSearchTerm] = useState("")
   const [restaurants, setRestaurants] = useState([])
@@ -15,7 +18,7 @@ export default function HomePage({ onRestaurantSelect }) {
 
     setLoading(true)
     try {
-      const res = await fetch(`http://localhost:8000/api/search/?query=${encodeURIComponent(term)}`);
+      const res = await fetch(`${API_BASE}/api/search/?query=${encodeURIComponent(term)}`);
       const data = await res.json()
       setRestaurants(data.places || [])
     } catch (err) {

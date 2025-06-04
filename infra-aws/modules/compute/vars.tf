@@ -94,3 +94,15 @@ variable "image_tag" {
   description = "Tag obrazu Dockerowego w ECR (np. skrót commita)"
   type        = string
 }
+
+variable "api_url" {
+  description = "DNS name ALB"
+  type        = string
+}
+
+variable "google_api_key" {
+  description = "Klucz API Google (do przekazania front-endowi jako NEXT_PUBLIC_GOOGLE_API_KEY)"
+  type        = string
+  sensitive   = true
+}
+

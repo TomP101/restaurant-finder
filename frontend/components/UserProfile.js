@@ -1,13 +1,15 @@
 "use client"
 import { useEffect, useState } from "react"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
 export default function UserProfile({ onBack }) {
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     const fetchUserReviews = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/user/reviews/", {
+        const res = await fetch('${API_BASE}/api/user/reviews/', {
           credentials: "include"
         })
         if (res.ok) {

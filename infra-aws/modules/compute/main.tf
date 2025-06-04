@@ -162,7 +162,11 @@ resource "aws_ecs_task_definition" "app_task" {
         { name = "POSTGRES_PORT",     value = "5432" },
         { name = "POSTGRES_DB",       value = "eatery" },
         { name = "POSTGRES_USER",     value = "postgres" },
-        { name = "POSTGRES_PASSWORD", value = "postgres" }
+        { name = "POSTGRES_PASSWORD", value = "postgres" },
+        {
+          name  = "API_KEY"
+          value = var.google_api_key
+        }
       ]
 
       logConfiguration = {
@@ -189,7 +193,16 @@ resource "aws_ecs_task_definition" "app_task" {
         }
       ]
 
-      environment = []
+      environment = [
+        {
+          name  = "NEXT_PUBLIC_API_URL"
+          value = "http://${var.api_url}/api"
+        },
+        {
+          name  = "API_KEY"
+          value = var.google_api_key
+        }
+      ]
 
       logConfiguration = {
         logDriver = "awslogs"

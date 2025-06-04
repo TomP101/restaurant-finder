@@ -1,6 +1,8 @@
 "use client"
 import { useState } from "react"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
 function getCookie(name) {
   let cookieValue = null
   if (document.cookie && document.cookie !== "") {
@@ -16,6 +18,7 @@ function getCookie(name) {
   return cookieValue
 }
 
+
 export default function ReviewForm({ placeId,restaurant_name, onReviewSubmitSuccess }) {
   const [rating, setRating] = useState(0)
   const [text, setText] = useState("")
@@ -30,7 +33,7 @@ export default function ReviewForm({ placeId,restaurant_name, onReviewSubmitSucc
     const csrftoken = getCookie("csrftoken")
 
     try {
-      const res = await fetch("http://localhost:8000/api/reviews/add/", {
+      const res = await fetch('${API_BASE}/api/reviews/add/', {
         method: "POST",
         headers: { "Content-Type": "application/json" ,
         "X-CSRFToken": csrftoken},

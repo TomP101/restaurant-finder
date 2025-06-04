@@ -1,5 +1,7 @@
 "use client"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
 export default function RestaurantCard({ restaurant, onSelect }) {
   const renderStars = (rating) => {
     const stars = []
