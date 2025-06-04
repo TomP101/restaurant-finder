@@ -168,9 +168,7 @@ resource "aws_lb_listener" "listener_forward_all" {
   }
 }
 
-#
-# Listener Rule: jeśli ścieżka zaczyna się od "/api/", to forward do backend_tg
-#
+
 resource "aws_lb_listener_rule" "api_rule" {
   listener_arn = aws_lb_listener.listener_forward_all.arn
   priority     = 100
@@ -182,7 +180,7 @@ resource "aws_lb_listener_rule" "api_rule" {
 
   condition {
     path_pattern {
-      patterns = ["/api/*"]
+      values = ["/api/*"]
     }
   }
 }
