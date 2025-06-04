@@ -5,7 +5,7 @@ pipeline {
     AWS_REGION     = 'eu-north-1'
     AWS_ACCOUNT_ID = '774305577837'
     ECR_REPO_BACKEND       = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/backend-repo"
-    ECR_REPO_BACKEND       = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/frontend-repo"
+    ECR_REPO_FRONTEND       = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/frontend-repo"
     IMAGE_TAG      = "${GIT_COMMIT[0..6]}"
   }
 
