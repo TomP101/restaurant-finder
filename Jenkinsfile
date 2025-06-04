@@ -70,9 +70,11 @@ pipeline {
 
   post {
     success {
-      echo "Obrazy zbudowane i wypchnięte do ECR:
+      echo """
+      Obrazy zbudowane i wypchnięte do ECR:
         - Backend:  ${ECR_REPO_BACKEND}:${IMAGE_TAG}
-        - Frontend: ${ECR_REPO_FRONTEND}:${IMAGE_TAG}"
+        - Frontend: ${ECR_REPO_FRONTEND}:${IMAGE_TAG}
+        """
       deleteDir()
     }
     failure {
