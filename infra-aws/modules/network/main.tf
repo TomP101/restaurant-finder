@@ -27,7 +27,6 @@ resource "aws_subnet" "subnet_eu_north1b" {
   }
 }
 
-# Security Group allowing HTTP from anywhere (ALB + Instances will use this SG)
 resource "aws_security_group" "sg1" {
   vpc_id = aws_vpc.network.id
 
@@ -38,6 +37,30 @@ resource "aws_security_group" "sg1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port       = 3000
+    to_port         = 3000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sg1.id]
+  }
+
+
+  ingress {
+    from_port       = 8000
+    to_port         = 8000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sg1.id]
+  }
+
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["<TWOJE_IP>/32"]
+  }
+
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -45,6 +68,7 @@ resource "aws_security_group" "sg1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
 
 # Internet Gateway
 resource "aws_internet_gateway" "igw" {
