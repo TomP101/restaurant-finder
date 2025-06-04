@@ -4,9 +4,6 @@ from django.urls import path
 from . import views
 from .views import RestaurantList, RestaurantDetail, ReviewListCreate, ReviewCreate, search_restaurants, register_user
 
-def health_check(request):
-    return HttpResponse("OK", status=200)
-
 urlpatterns = [
     path("restaurants/", RestaurantList.as_view(), name="restaurant-list"),
     path("restaurants/<int:pk>/", RestaurantDetail.as_view(), name="restaurant-detail"),
@@ -21,7 +18,6 @@ urlpatterns = [
     path("reviews/place/", views.get_reviews_for_place),
     path("reviews/add/", views.add_review),
     path("user/reviews/", views.get_user_reviews, name="user-reviews"),
-    path('health/', health_check),
 
 
 ]
