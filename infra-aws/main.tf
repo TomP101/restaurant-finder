@@ -22,7 +22,6 @@ module "compute" {
   min_size              = var.min_size
   max_size              = var.max_size
   desired_capacity      = var.desired_capacity
-  tag_name              = var.tag_name
   backend_target_group_arn = module.network.backend_tg_arn
   frontend_target_group_arn = module.network.frontend_tg_arn
 
