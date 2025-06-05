@@ -110,9 +110,7 @@ resource "aws_lb" "application-lb" {
   }
 }
 
-#
-# Target Group dla frontendu (React) – nasłuch na porcie 3000
-#
+
 resource "aws_lb_target_group" "frontend_tg" {
   name        = "frontend-tg"
   port        = 3000
@@ -139,9 +137,7 @@ resource "aws_lb_target_group" "frontend_tg" {
   }
 }
 
-#
-# Target Group dla backendu (Django) – nasłuch na porcie 8000
-#
+
 resource "aws_lb_target_group" "backend_tg" {
   name        = "backend-tg"
   port        = 8000
